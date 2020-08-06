@@ -1,291 +1,48 @@
-# Smart Expense & Budget Tracker for Students
-📌 Description
-A personal finance management app that helps students track their daily expenses, manage budgets, and save money efficiently.
-🛠️ Core Features
-Expense Logging & Categorization – Manually enter and categorize expenses.
-Budget Setting & Alerts – Users define a monthly budget and get notifications when overspending.
-Savings Goals & Reminders – Helps users track savings goals.
-Simple Reports & Graphs – Visual representation of spending habits.
-Offline Storage – All transactions are stored locally for offline access.
+# ReactJS-Spring-Boot-CRUD-Full-Stack-App - Course on YouTube
 
+#### ReactJS + Spring Boot CRUD Full Stack App - 1 - Project Overview
+=> https://youtu.be/n43h1eJ2EUE
 
-Here's a Postman documentation for testing each of your APIs based
-
-1. UserController
-POST /api/users/register
-Description: Registers a new user and sends an OTP to their email.
-Request Body:
- {
-    "name": "John Doe",
-    "email": "john.doe@example.com"
-}
-
-
-Response:
- {
-    "message": "OTP sent to email"
-}
-
-
-POST /api/users/verify
-Description: Verifies the user's OTP for registration.
-Request Body:
- {
-    "email": "john.doe@example.com",
-    "otp": "123456"
-}
-
-
-Response:
- {
-    "message": "User verified successfully"
-}
- Or if invalid OTP:
- {
-    "message": "Invalid OTP"
-}
-
-
-
-2. SavingsGoalController
-POST /api/goals/create
-Description: Creates a new savings goal for a user.
-Request Body:
- {
-    "email": "john.doe@example.com",
-    "name": "Vacation Fund",
-    "targetAmount": 5000.00
-}
-
-
-Response:
- {
-    "id": 1,
-    "name": "Vacation Fund",
-    "targetAmount": 5000.00,
-    "savedAmount": 0.00,
-    "user": {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john.doe@example.com"
-    }
-}
-
-
-GET /api/goals/{email}
-Description: Fetches all savings goals of a user.
-Response (for a user with existing goals):
- [
-    {
-        "id": 1,
-        "name": "Vacation Fund",
-        "targetAmount": 5000.00,
-        "savedAmount": 100.00
-    }
-]
- Or if no goals:
- []
-
-
-PUT /api/goals/update/{id}
-Description: Updates an existing savings goal.
-Request Body:
- {
-    "name": "Updated Vacation Fund",
-    "targetAmount": 6000.00,
-    "savedAmount": 500.00
-}
-
-
-Response:
- {
-    "id": 1,
-    "name": "Updated Vacation Fund",
-    "targetAmount": 6000.00,
-    "savedAmount": 500.00
-}
-
-
-DELETE /api/goals/delete/{id}
-Description: Deletes a savings goal.
-Response:
- {
-    "message": "Goal deleted successfully"
-}
- Or if goal not found:
- {
-    "message": "Goal not found"
-}
-
-
-
-3. ExpenseController
-POST /api/expenses/add
-Description: Adds a new expense for a user.
-Request Body:
- {
-    "email": "john.doe@example.com",
-    "category": "Food",
-    "amount": 50.00,
-    "description": "Lunch"
-}
-
-
-Response:
- {
-    "id": 1,
-    "category": "Food",
-    "amount": 50.00,
-    "description": "Lunch",
-    "date": "2025-02-18T00:00:00.000+00:00",
-    "user": {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john.doe@example.com"
-    }
-}
-
-
-GET /api/expenses/{email}
-Description: Retrieves all expenses of a user.
-Response (for a user with expenses):
- [
-    {
-        "id": 1,
-        "category": "Food",
-        "amount": 50.00,
-        "description": "Lunch",
-        "date": "2025-02-18T00:00:00.000+00:00"
-    }
-]
- Or if no expenses:
- []
-
-
-PUT /api/expenses/update/{id}
-Description: Updates an existing expense.
-Request Body:
- {
-    "category": "Food",
-    "amount": 60.00,
-    "description": "Dinner",
-    "date": "2025-02-18T00:00:00.000+00:00"
-}
-
-
-Response:
- {
-    "id": 1,
-    "category": "Food",
-    "amount": 60.00,
-    "description": "Dinner",
-    "date": "2025-02-18T00:00:00.000+00:00"
-}
-
-
-DELETE /api/expenses/delete/{id}
-Description: Deletes an expense.
-Response:
- {
-    "message": "Expense deleted successfully"
-}
- Or if expense not found:
- {
-    "message": "Expense not found"
-}
-
-
-
-4. BudgetController
-POST /api/budget/set
-Description: Sets a budget for a user.
-Request Body:
- {
-    "email": "john.doe@example.com",
-    "amount": 1000.00,
-    "period": "monthly"
-}
-
-
-Response:
- {
-    "id": 1,
-    "amount": 1000.00,
-    "period": "monthly",
-    "user": {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john.doe@example.com"
-    }
-}
-
-
-GET /api/budget/get/{email}
-Description: Retrieves the budget for a user.
-Response:
- {
-    "id": 1,
-    "amount": 1000.00,
-    "period": "monthly"
-}
- Or if no budget:
- "User not found"
-
-
-PUT /api/budget/update/{email}
-Description: Updates the budget for a user.
-Request Body:
- {
-    "amount": 1200.00,
-    "period": "monthly"
-}
-
-
-Response:
- {
-    "id": 1,
-    "amount": 1200.00,
-    "period": "monthly"
-}
-
-
-DELETE /api/budget/delete/{email}
-Description: Deletes a user's budget.
-Response:
- {
-    "message": "Budget deleted successfully"
-}
-
-
-
-Postman Testing Steps
-Register User:
-
-
-Test POST /api/users/register to create a new user.
-Follow by POST /api/users/verify to verify the OTP.
-Create, View, Update, Delete Goals:
-
-
-Test POST /api/goals/create to create a savings goal.
-Test GET /api/goals/{email} to view goals.
-Test PUT /api/goals/update/{id} to update a goal.
-Test DELETE /api/goals/delete/{id} to delete a goal.
-Manage Expenses:
-
-
-Test POST /api/expenses/add to add a new expense.
-Test GET /api/expenses/{email} to view expenses.
-Test PUT /api/expenses/update/{id} to update an expense.
-Test DELETE /api/expenses/delete/{id} to delete an expense.
-Manage Budget:
-
-
-Test POST /api/budget/set to set a budget.
-Test GET /api/budget/get/{email} to view budget.
-Test PUT /api/budget/update/{email} to update the budget.
-Test DELETE /api/budget/delete/{email} to delete a budget.
-
-By following this, you can fully test the CRUD operations of each controller via Postman. Each API endpoint has been named and documented with expected input/output. 
-
+#### ReactJS + Spring Boot CRUD Full Stack App - 2 - Project Architecture and Development Process
+=> https://youtu.be/iK__liBIXWk
+#### ReactJS + Spring Boot CRUD Full Stack App - 3 - Create Spring Boot Project and Configure MySQL
+=> https://youtu.be/k5KnAhkRzh4
+#### ReactJS + Spring Boot CRUD Full Stack App - 4 - Creating JPA Entity + Repository
+=> https://youtu.be/FZwLlaMmers
+#### ReactJS + Spring Boot CRUD Full Stack App - 5 - Creating List Employee REST API
+=> https://youtu.be/L57OlxU0fEE
+#### ReactJS + Spring Boot CRUD Full Stack App - 6 - Creating React App
+=> https://youtu.be/tUXiPfNKUWE
+#### ReactJS + Spring Boot CRUD Full Stack App - 7 - Add Bootstrap 4 in React App
+=> https://youtu.be/ArxBR9C1oNA
+#### ReactJS + Spring Boot CRUD Full Stack App - 8 - Creating React List Employee Component
+=> https://youtu.be/Tpt9t5IV7Vw
+#### ReactJS + Spring Boot CRUD Full Stack App - 9 - Connecting React with List Employee REST API
+=> https://youtu.be/zXE7dCidXhc
+#### ReactJS + Spring Boot CRUD Full Stack App - 10 - Add Header and Footer to React App
+=> https://youtu.be/LOcy9uFzBBU
+#### ReactJS + Spring Boot CRUD Full Stack App - 11 - Configure Routing
+=> https://youtu.be/z2QAbWy1A40
+#### ReactJS + Spring Boot CRUD Full Stack App - 12 - Creating Add Employee REST API
+=> https://youtu.be/1y3pOPNrGms
+#### ReactJS + Spring Boot CRUD Full Stack App - 13 - Creating React Add Employee Component
+=> https://youtu.be/E_7uVf0RCl4
+#### ReactJS + Spring Boot CRUD Full Stack App - 14 - React Add Employee Form Handling
+=> https://youtu.be/S5AFJIfRxQU
+#### ReactJS + Spring Boot CRUD Full Stack App - 15 - Connecting React with Add Employee REST API
+=> https://youtu.be/ieMhlyjPjWo
+#### ReactJS + Spring Boot CRUD Full Stack App - 16 - Creating Get Employee By Id REST API
+=> https://youtu.be/L5SYbfkOTQA
+#### ReactJS + Spring Boot CRUD Full Stack App - 17 - Creating Update Employee REST API
+=> https://youtu.be/voJAjtioNN8
+#### ReactJS + Spring Boot CRUD Full Stack App - 18 - Creating React Update Employee
+=> https://youtu.be/GrIG4-lnLkQ
+#### ReactJS + Spring Boot CRUD Full Stack App - 19 - Connecting React with Update Employee REST API
+=> https://youtu.be/uPCWBOrU6Vs
+#### ReactJS + Spring Boot CRUD Full Stack App - 20 - Add & Update Employee with Single React Component 
+=> https://youtu.be/ksvDBGF7JRE
+#### ReactJS + Spring Boot CRUD Full Stack App - 21 - Creating Delete Employee REST API 
+=> https://youtu.be/dzgixz4X1KA
+#### ReactJS + Spring Boot CRUD Full Stack App - 22 - Connecting React with Delete Employee REST API
+=> https://youtu.be/L6wM7x0fqZs
 
